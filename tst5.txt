@@ -1,2 +1,16 @@
-tst5
+//tst5
+//run in node as js file
+// Read Synchrously
+var fs = require("fs");
+console.log("\n *START* \n");
+var content = fs.readFileSync("content.txt");
+console.log("Output Content : \n"+ content);
 
+// Define to JSON type
+ var jsonContent = JSON.parse(content);
+// Get Value from JSON
+ console.log("User Name:", jsonContent.username);
+ console.log("Email:", jsonContent.email);
+ console.log("Password:", jsonContent.password);
+
+console.log("\n *EXIT* \n");
