@@ -1,0 +1,7 @@
+import * as data from './example.json';
+
+const word = (<any>data).name;
+const a = (<any>data).a;
+console.log(word); // output 'testing'
+
+console.log('data.a=' + a);
