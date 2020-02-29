@@ -1,0 +1,35 @@
+ 
+ // in tsconfig.ts at root
+ "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true  
+  }
+  
+  // in app.module.ts in app/src
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+import * as dataexample from './example.json';
+
+const word = (<any>dataexample).name;
+const a = (<any>dataexample).a;
+const d4 = (<any>dataexample).d4;
+console.log('word='+word); // output 'testing'
+console.log('data.a=' + a);
+console.log('data.d4=' + d4);
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
