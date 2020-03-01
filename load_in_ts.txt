@@ -42,3 +42,20 @@ console.log('bigj.data[1]=' + JSON.stringify( bigj.data[1]));
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+// in app.component.ts
+import { Component } from '@angular/core';
+
+import * as data from './example.json';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'e4x';
+  gamad = 'anak';
+  d4 = (<any>data).d4;
+  x4 = JSON.stringify( (<any>data).d4);
+}
