@@ -9,10 +9,12 @@
   }
   
   // in app.module.ts in app/src
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 import * as dataexample from './example.json';
 
@@ -21,16 +23,22 @@ const a = (<any>dataexample).a;
 const d4 = (<any>dataexample).d4;
 console.log('word='+word); // output 'testing'
 console.log('data.a=' + a);
-console.log('data.d4=' + d4);
+console.log('data.d4=' + JSON.stringify(dataexample.d4));
+
+import * as bigj from './elk2_big.json';
+console.log('bigj.info=' + JSON.stringify(bigj.info));
+console.log('bigj.data.length=' + bigj.data.length);
+console.log('bigj.data.keys=' + bigj.data.keys);
+console.log('bigj.data[1]=' + JSON.stringify( bigj.data[1]));
+
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
