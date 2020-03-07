@@ -1,0 +1,65 @@
+html access:
+ dataService.three:{{dataService.serviceData.three}}
+
+
+data.service.ts:
+
+import { Injectable } from '@angular/core';
+import * as datum from './dat.json';
+let dat2 = (<any>datum).default;
+//console.log("injectable dat2.two=" + dat2.two);
+@Injectable() 
+export class DataService {
+  serviceData = dat2;
+}
+
+app.component.ts:
+
+import { Component } from '@angular/core';
+import { DataService } from './data.service';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title :string = 'e7';
+  datim = 'datim';
+  constructor(public dataService: DataService) {
+    console.log("comp construtor=" + dataService.serviceData);
+    let ac0 = JSON.stringify(dataService.serviceData);
+    console.log("ac0 stringed=" + ac0);
+   } 
+}
+
+app.module.ts:
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { DataService } from './data.service';
+//import * as data from './dat.json';
+//const dat = (<any>data).default;
+//console.log('dat=' + JSON.stringify(dat));
+const d0=new DataService;
+console.log('d0=' + JSON.stringify(d0));
+//console.log('d0.three=' + d0.serviceData.three);
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [DataService],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+	datim = d0;
+}
+
+dat.json:
+{
+"one": 1, "two": 2, "three": 3, "four": 4, "five": 5
+}
+
