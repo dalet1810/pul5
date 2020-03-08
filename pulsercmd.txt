@@ -1,0 +1,4 @@
+
+commands: done, save, erase, nsave, reads
+ex "nsave pm3 0 10 40 303 E"
+   "nsave tr7 pm3 pm3 E"
