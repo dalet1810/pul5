@@ -1,3 +1,8 @@
+root tsconfig.json:
+  Add 2 options
+    "resolveJsonModule": true,
+    "esModuleInterop": true  
+
 html access:
  dataService.three:{{dataService.serviceData.three}}
 
