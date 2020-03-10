@@ -44,18 +44,106 @@ console.log('bigj.data[1]=' + JSON.stringify( bigj.data[1]));
 export class AppModule {}
 
 // in app.component.ts
+//app.component.ts:
+
 import { Component } from '@angular/core';
-
-import * as data from './example.json';
-
+import { DataService } from './data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'e4x';
-  gamad = 'anak';
-  d4 = (<any>data).d4;
-  x4 = JSON.stringify( (<any>data).d4);
+  title :string = 'aggrid2';
+  datim = 'for HTML';
+  d45 :object= ['d45 array item', '2nd item'];
+
+/*
+
+  gridOptions= {
+    defaultColDef: {
+        resizable: true
+    };
+*/
+ 
+  columnDefs = [
+	{field :'name', sortable: true, resizable: true, },
+	{field :'location', resizable: true, },
+	{field :'t_opened'},
+	{field :'status', filter: true, resizable: true, },
+  ];
+
+  rowData = (<any>dataService.serviceData).data;
+
+  constructor(public dataService: DataService) {
+    console.log("comp construtor ?.data[0]=" + dataService.serviceData.data[0]);
+    let ac0 = JSON.stringify(dataService.serviceData.data[0]);
+    console.log("ac0 stringed=" + ac0);
+    let d4 = (<any>dataService.serviceData).data;
+    console.log("d4.length=" + d4.length);
+    //d45 = ['d45 1st item'];
+  } 
 }
+
+
+in html(2):
+
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+  }
+</style>
+
+<span><h4>{{ title }}</h4> app with aggrid is running!</span>
+
+<div>
+<ag-grid-angular
+    style="width: 810px; height: 600px;"
+    class="ag-theme-balham"
+
+    gridOptions="defaultColDef: { resizable: true };"
+
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+
+    >
+</ag-grid-angular>
+</div>
+
+<div>
+<br/>
+servicedata.info.total={{dataService.serviceData.info.total}}
+</div>
+<div>
+datim {{datim}} 
+<br/>
+Name: {{dataService.serviceData.data[0].name}}
+<br/>
+time opened of 1st: {{dataService.serviceData.data[0].t_opened }}
+<br/>
+
+</div>
+<!--
+<table>
+  <thead>
+	  <th>index</th><th>name</th><th>location</th>
+	  <th>serial</th><th>version</th>
+  </thead>
+  <tr *ngFor="let item of dataService.serviceData.data ; let i = index">
+	  <td>{{i}}</td> <td>{{item.name}}</td><td>{{item.location}}</td>
+	  <td>{{item.serial}}</td> <td>{{item.version}}</td>
+
+  </tr>
+
+</table>
+-->
+
