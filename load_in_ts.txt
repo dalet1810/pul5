@@ -73,7 +73,7 @@ export class AppComponent {
 	{field :'status', filter: true, resizable: true, },
   ];
 
-  rowData = (<any>dataService.serviceData).data;
+  //rowData = (<any>dataService.serviceData).data; (in HTML)
 
   constructor(public dataService: DataService) {
     console.log("comp construtor ?.data[0]=" + dataService.serviceData.data[0]);
@@ -112,7 +112,7 @@ in html(2):
 
     gridOptions="defaultColDef: { resizable: true };"
 
-    [rowData]="rowData"
+    [rowData]= dataService.serviceData.data
     [columnDefs]="columnDefs"
 
     >
